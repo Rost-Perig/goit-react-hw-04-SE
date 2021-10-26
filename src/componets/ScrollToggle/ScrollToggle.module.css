@@ -1,0 +1,59 @@
+.scrollToggle {
+  position: fixed;
+  z-index: 1101;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 18px;
+  right: 20px;
+}
+
+.buttonFrame {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 54px;
+  height: 28px;
+  border-radius: 14px;
+  border: 1px solid #91af7f;
+  box-shadow: inset 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    inset 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    inset 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.scrollButton {
+  position: absolute;
+  top: 1px;
+  /* right: 2px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: none;
+  border: solid 1px #6c855e;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #617a53;
+  color: #8ca87c;
+  /* box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12); */
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 2px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.itemText {
+  font-size: 10px;
+  font-weight: 600;
+  color: #617a53;
+}
+
+.scrollName {
+  margin-right: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #617a53;
+}
