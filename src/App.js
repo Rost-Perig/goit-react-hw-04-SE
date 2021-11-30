@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import TopBar from './componets/TopBar'
 import Searchbar from './componets/Searchbar';
 import Spinner from './componets/Spinner';
 import ImageGallery from './componets/ImageGallery';
@@ -18,7 +19,7 @@ import { imgOpen, changeModalImg } from './services/modal-service';
 function App() {
     
     const [searchQuery, setSearchQuery] = useState('');
-    const [status, setStatus] = useState('idle');
+    const [status, setStatus] = useState('pending');
     const [totalImg, setTotalImg] = useState(0);
     const [page, setPage] = useState(1);
     const [imgObjArr, setImgObjArr] = useState([]);
@@ -34,10 +35,10 @@ function App() {
 
     useEffect(() => {
         async function fetchData() {
-            if (!searchQuery) {
-                return setStatus('idle');
-            };
-            setStatus('pending');
+            // if (!searchQuery ) {
+            //     return setStatus('idle');
+            // };
+            // setStatus('pending');
             let newRequest;
             try {
                 newRequest = await imgApiService.fetchImages(searchQuery, 1);
@@ -97,7 +98,7 @@ function App() {
                 //     top: document.documentElement.scrollHeight,
                 //     behavior: 'smooth',
                 // });
-        }, 1000);
+        }, 600);
     }, [scrollPoint, page, endlessScroll]);
 
     // endless Scroll
@@ -130,6 +131,7 @@ function App() {
     };
 
     const loadMore = async () => {
+        console.log(document.querySelector(`[id="gallery"]`).offsetHeight)
         setScrollPoint(imgObjArr.length !== 0 && document.querySelector(`[id="gallery"]`).offsetHeight);
         setPage(prevState => prevState + 1);
     };
@@ -161,7 +163,15 @@ function App() {
 
         <div className="App">
 
-            <Searchbar searchQueryToUp={searchQuerySubmit} />
+            <TopBar>
+                
+                <h1 className="serviceTitle">search images</h1>
+
+                <Searchbar searchQueryToUp={searchQuerySubmit} />
+
+                <ScrollToggle toggleScroll={infScrollToggle} position={endlessScroll} />
+                
+            </TopBar>
 
             {(status === 'idle') && <h2 className="galleryTitle">Введите запрос</h2>}
 
@@ -189,8 +199,6 @@ function App() {
 
             {((status === 'resolved') && (page * 12 < totalImg) && !endlessScroll) && <ButtonMore clickOn={loadMore}/>}
             {((page * 12 >= totalImg) && (status === 'resolved')) && <h2 className="galleryTitle">Запрос "{searchQuery.toUpperCase()}" успешно выполнен</h2>}
-
-            <ScrollToggle toggleScroll={infScrollToggle} position={endlessScroll}/>
         
             <ToastContainer />
 

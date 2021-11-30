@@ -1,11 +1,8 @@
 .scrollToggle {
-  position: fixed;
-  z-index: 1101;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 18px;
-  right: 20px;
+  margin: 4px 0;
 }
 
 .buttonFrame {

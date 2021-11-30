@@ -1,13 +1,24 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { ImSearch } from 'react-icons/im';
 import s from './Searchbar.module.css';
 
+const INITIAL_QUERY = 'hdr';
+
 const Searchbar = ({searchQueryToUp}) => {
-    const [searchQuery, setSearchQuery] = useState('');
+    const [searchQuery, setSearchQuery] = useState(INITIAL_QUERY);
 
     const inputRef = useRef();
+
+    useEffect(() => {
+        if (searchQuery.trim() === '') {
+            return;
+        };
+        searchQueryToUp(searchQuery);
+        inputRef.current.placeholder = searchQuery;
+        setSearchQuery('');
+    }, [])
 
     const handleInputChange = e => setSearchQuery(e.currentTarget.value);
 
@@ -28,7 +39,6 @@ const Searchbar = ({searchQueryToUp}) => {
     };
     
     return (
-        <div className={s.Searchbar} >
             <form className={s.SearchForm} onSubmit={handleSubmit}>
                 <button type="submit" className={s.SearchFormButton}>
                     <ImSearch />
@@ -48,7 +58,6 @@ const Searchbar = ({searchQueryToUp}) => {
                     />
                 </label>
             </form>
-        </div>
     );
 
 };

@@ -50,9 +50,10 @@ img {
 }
 
 .galleryTitle {
+  font-size: 24px;
   text-align: center;
   margin-top: 0;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
   color: #617a53;
 }
 
@@ -60,4 +61,10 @@ img {
   object-fit: contain;
   max-width: 90vw;
   max-height: 90vh;
+}
+
+.serviceTitle {
+  font-size: 28px;
+  margin: 4px 0;
+  color: #617a53;
 }
