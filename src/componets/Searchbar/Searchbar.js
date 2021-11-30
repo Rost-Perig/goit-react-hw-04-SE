@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { ImSearch } from 'react-icons/im';
 import s from './Searchbar.module.css';
 
-const INITIAL_QUERY = 'hdr';
+export const INITIAL_QUERY = 'hdr';
 
-const Searchbar = ({searchQueryToUp}) => {
+export const Searchbar = ({searchQueryToUp}) => {
     const [searchQuery, setSearchQuery] = useState(INITIAL_QUERY);
 
     const inputRef = useRef();
@@ -18,7 +18,7 @@ const Searchbar = ({searchQueryToUp}) => {
         searchQueryToUp(searchQuery);
         inputRef.current.placeholder = searchQuery;
         setSearchQuery('');
-    }, [])
+    }, []);
 
     const handleInputChange = e => setSearchQuery(e.currentTarget.value);
 
@@ -66,4 +66,4 @@ Searchbar.propTypes = {
     searchQuery: PropTypes.string,
 };   
 
-export default Searchbar;
+// export default Searchbar;
